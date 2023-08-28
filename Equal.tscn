@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://tenn7g76dha"]
+
+[ext_resource type="FontFile" uid="uid://cc502jwwu6jnx" path="res://fonts/Roboto-Bold.ttf" id="1_vll5g"]
+
+[node name="Label" type="Label"]
+custom_minimum_size = Vector2(92, 92)
+theme_override_fonts/font = ExtResource("1_vll5g")
+theme_override_font_sizes/font_size = 58
+text = "="
+horizontal_alignment = 1
+vertical_alignment = 1

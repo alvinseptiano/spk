@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cg4kq7o87sb2f"]
+
+[node name="Y1" type="LineEdit"]
+custom_minimum_size = Vector2(92, 92)
+text = "C1"
+alignment = 1
+flat = true
+caret_blink = true
+caret_blink_interval = 0.5

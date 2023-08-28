@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc0ofqta6cf0e"]
+
+[ext_resource type="Theme" uid="uid://dd3exnjt3t6ap" path="res://gfx/main_theme.tres" id="1_eem84"]
+[ext_resource type="Script" path="res://DataSlot.gd" id="1_to0dy"]
+
+[node name="0" type="SpinBox"]
+custom_minimum_size = Vector2(92, 92)
+offset_right = 92.0
+offset_bottom = 92.0
+focus_mode = 2
+theme = ExtResource("1_eem84")
+max_value = 1000.0
+step = 0.001
+alignment = 1
+script = ExtResource("1_to0dy")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "1-2"

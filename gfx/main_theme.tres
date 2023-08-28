@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dd3exnjt3t6ap"]
+
+[ext_resource type="Texture2D" uid="uid://dso57obps7pjs" path="res://gfx/dark_switch.png" id="1_gnsrb"]
+[ext_resource type="FontFile" uid="uid://crtko8wggn4bl" path="res://fonts/Roboto-Regular.ttf" id="1_s8d15"]
+[ext_resource type="Texture2D" uid="uid://qv7rpbuf6v34" path="res://gfx/light_switch.png" id="2_d0q04"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_watfa"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_wswxg"]
+
+[resource]
+default_font = ExtResource("1_s8d15")
+default_font_size = 18
+CheckButton/icons/checked = ExtResource("1_gnsrb")
+CheckButton/icons/unchecked = ExtResource("2_d0q04")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_watfa")
+Fonts/fonts/normal = ExtResource("1_s8d15")
+SpinBox/font_sizes/bigger = 40
+SpinBox/fonts/f = ExtResource("1_s8d15")
+SpinBox/icons/updown = SubResource("ImageTexture_wswxg")
+dark/styles/dark = null

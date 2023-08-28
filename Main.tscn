@@ -1,0 +1,725 @@
+[gd_scene load_steps=20 format=3 uid="uid://dn25lcw65eqme"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_jrsf7"]
+[ext_resource type="Theme" uid="uid://dd3exnjt3t6ap" path="res://main_theme.tres" id="1_knxka"]
+[ext_resource type="Script" path="res://src/Table.gd" id="3_ssgbb"]
+[ext_resource type="PackedScene" uid="uid://cg4kq7o87sb2f" path="res://DataRowColumn.tscn" id="4_iplh0"]
+[ext_resource type="PackedScene" uid="uid://bc0ofqta6cf0e" path="res://DataSlot.tscn" id="6_gbtuc"]
+[ext_resource type="Script" path="res://src/Normalisasi.gd" id="6_lh3fd"]
+[ext_resource type="Script" path="res://src/Rank.gd" id="7_bledp"]
+[ext_resource type="Script" path="res://src/AddElement.gd" id="7_jwtv6"]
+[ext_resource type="PackedScene" uid="uid://tenn7g76dha" path="res://Equal.tscn" id="8_27m41"]
+[ext_resource type="PackedScene" uid="uid://clxbtv4c1c11r" path="res://Bobot.tscn" id="8_a0ei7"]
+[ext_resource type="Texture2D" uid="uid://cm62nonep2p8y" path="res://arrow.png" id="12_miu7s"]
+[ext_resource type="Texture2D" uid="uid://bvf4g4g66phm0" path="res://gfx/info.png" id="13_gkeuk"]
+
+[sub_resource type="GDScript" id="GDScript_85ttq"]
+script/source = "#@tool
+extends GridContainer
+
+
+#func _process(_delta: float) -> void:
+#	columns = int(get_child_count() / 4)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5a7mo"]
+border_width_left = 24
+corner_radius_top_left = 27
+
+[sub_resource type="Theme" id="Theme_4lpfw"]
+Panel/styles/panel = SubResource("StyleBoxFlat_5a7mo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e15t5"]
+bg_color = Color(0.266667, 0.278431, 0.352941, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_detail = 10
+shadow_color = Color(0, 0, 0, 0.192157)
+shadow_size = 38
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j51wl"]
+bg_color = Color(0.384314, 0.447059, 0.643137, 1)
+border_color = Color(0.457322, 0.521413, 0.717282, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 9
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+shadow_color = Color(0, 0, 0, 0.133333)
+shadow_size = 14
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_moi1e"]
+bg_color = Color(0.156863, 0.164706, 0.211765, 1)
+corner_detail = 12
+shadow_color = Color(0, 0, 0, 0.141176)
+shadow_size = 4
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="FontVariation" id="FontVariation_mqx5l"]
+
+[node name="Main" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_knxka")
+color = Color(0.164706, 0.172549, 0.219608, 1)
+script = ExtResource("1_jrsf7")
+
+[node name="V" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 19.0
+offset_right = -25.0
+offset_bottom = -176.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="V"]
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+
+[node name="Flow" type="FlowContainer" parent="V/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 64
+theme_override_constants/v_separation = 64
+
+[node name="Tabel" type="VBoxContainer" parent="V/ScrollContainer/Flow"]
+layout_mode = 2
+script = ExtResource("3_ssgbb")
+
+[node name="Judul" type="Label" parent="V/ScrollContainer/Flow/Tabel"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Data"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="V/ScrollContainer/Flow/Tabel"]
+layout_mode = 2
+
+[node name="SubJudul" type="HBoxContainer" parent="V/ScrollContainer/Flow/Tabel"]
+layout_mode = 2
+
+[node name="SubJudul" type="Control" parent="V/ScrollContainer/Flow/Tabel/SubJudul"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="SubJudul2" type="Label" parent="V/ScrollContainer/Flow/Tabel/SubJudul"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Kriteria"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="V/ScrollContainer/Flow/Tabel"]
+layout_mode = 2
+columns = 2
+
+[node name="SubJudul" type="Label" parent="V/ScrollContainer/Flow/Tabel/Grid"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Alternatif "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Kriteria" type="HBoxContainer" parent="V/ScrollContainer/Flow/Tabel/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="C1" parent="V/ScrollContainer/Flow/Tabel/Grid/Kriteria" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+
+[node name="C2" parent="V/ScrollContainer/Flow/Tabel/Grid/Kriteria" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "C2"
+
+[node name="Alternatif" type="VBoxContainer" parent="V/ScrollContainer/Flow/Tabel/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="A1" parent="V/ScrollContainer/Flow/Tabel/Grid/Alternatif" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "A1"
+
+[node name="A2" parent="V/ScrollContainer/Flow/Tabel/Grid/Alternatif" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "A2"
+
+[node name="Content" type="GridContainer" parent="V/ScrollContainer/Flow/Tabel/Grid"]
+custom_minimum_size = Vector2(85, 85)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+script = SubResource("GDScript_85ttq")
+
+[node name="1-1" parent="V/ScrollContainer/Flow/Tabel/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="1-2" parent="V/ScrollContainer/Flow/Tabel/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="2-1" parent="V/ScrollContainer/Flow/Tabel/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="2-2" parent="V/ScrollContainer/Flow/Tabel/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="Normalisasi" type="VBoxContainer" parent="V/ScrollContainer/Flow"]
+visible = false
+layout_mode = 2
+script = ExtResource("6_lh3fd")
+
+[node name="Judul" type="Label" parent="V/ScrollContainer/Flow/Normalisasi"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Normalisasi"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="V/ScrollContainer/Flow/Normalisasi"]
+layout_mode = 2
+
+[node name="SubJudul" type="HBoxContainer" parent="V/ScrollContainer/Flow/Normalisasi"]
+layout_mode = 2
+
+[node name="SubJudul" type="Control" parent="V/ScrollContainer/Flow/Normalisasi/SubJudul"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+
+[node name="SubJudul2" type="Label" parent="V/ScrollContainer/Flow/Normalisasi/SubJudul"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Kriteria"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="V/ScrollContainer/Flow/Normalisasi"]
+layout_mode = 2
+columns = 2
+
+[node name="SubJudul" type="Label" parent="V/ScrollContainer/Flow/Normalisasi/Grid"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Alternatif "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Kriteria" type="HBoxContainer" parent="V/ScrollContainer/Flow/Normalisasi/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Y1" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Kriteria" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+
+[node name="Y2" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Kriteria" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "C2"
+
+[node name="Alternatif" type="VBoxContainer" parent="V/ScrollContainer/Flow/Normalisasi/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Y1" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Alternatif" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "A1"
+
+[node name="Y2" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Alternatif" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "A2"
+
+[node name="Content" type="GridContainer" parent="V/ScrollContainer/Flow/Normalisasi/Grid"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+script = SubResource("GDScript_85ttq")
+
+[node name="0" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="1" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="2" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="3" parent="V/ScrollContainer/Flow/Normalisasi/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="Ranking" type="VBoxContainer" parent="V/ScrollContainer/Flow"]
+layout_mode = 2
+script = ExtResource("7_bledp")
+
+[node name="Label" type="Label" parent="V/ScrollContainer/Flow/Ranking"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Ranking"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="V/ScrollContainer/Flow/Ranking"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="V/ScrollContainer/Flow/Ranking"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+
+[node name="H" type="HBoxContainer" parent="V/ScrollContainer/Flow/Ranking"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Grid" type="GridContainer" parent="V/ScrollContainer/Flow/Ranking/H"]
+layout_mode = 2
+columns = 2
+
+[node name="SubJudul" type="Label" parent="V/ScrollContainer/Flow/Ranking/H/Grid"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Alternatif "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Kriteria" type="HBoxContainer" parent="V/ScrollContainer/Flow/Ranking/H/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Y1" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Kriteria" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+
+[node name="Y2" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Kriteria" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "C2"
+
+[node name="Alternatif" type="VBoxContainer" parent="V/ScrollContainer/Flow/Ranking/H/Grid"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Y1" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Alternatif" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "A1"
+
+[node name="Y2" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Alternatif" instance=ExtResource("4_iplh0")]
+layout_mode = 2
+text = "A2"
+
+[node name="Content" type="GridContainer" parent="V/ScrollContainer/Flow/Ranking/H/Grid"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+script = SubResource("GDScript_85ttq")
+
+[node name="0" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="1" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="2" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="3" parent="V/ScrollContainer/Flow/Ranking/H/Grid/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="Equal" type="VBoxContainer" parent="V/ScrollContainer/Flow/Ranking/H"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Control" type="Control" parent="V/ScrollContainer/Flow/Ranking/H/Equal"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+
+[node name="Label" parent="V/ScrollContainer/Flow/Ranking/H/Equal" instance=ExtResource("8_27m41")]
+layout_mode = 2
+
+[node name="Label2" parent="V/ScrollContainer/Flow/Ranking/H/Equal" instance=ExtResource("8_27m41")]
+layout_mode = 2
+
+[node name="Label3" parent="V/ScrollContainer/Flow/Ranking/H/Equal" instance=ExtResource("8_27m41")]
+layout_mode = 2
+
+[node name="Label4" parent="V/ScrollContainer/Flow/Ranking/H/Equal" instance=ExtResource("8_27m41")]
+layout_mode = 2
+
+[node name="Label5" parent="V/ScrollContainer/Flow/Ranking/H/Equal" instance=ExtResource("8_27m41")]
+layout_mode = 2
+
+[node name="Label6" parent="V/ScrollContainer/Flow/Ranking/H/Equal" instance=ExtResource("8_27m41")]
+layout_mode = 2
+
+[node name="Result" type="GridContainer" parent="V/ScrollContainer/Flow/Ranking/H"]
+layout_mode = 2
+theme_override_constants/v_separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="V/ScrollContainer/Flow/Ranking/H/Result"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Hasil" type="Label" parent="V/ScrollContainer/Flow/Ranking/H/Result/HBoxContainer"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Hasil"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ranking" type="Label" parent="V/ScrollContainer/Flow/Ranking/H/Result/HBoxContainer"]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Rank"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="HBoxContainer" parent="V/ScrollContainer/Flow/Ranking/H/Result"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="Content" type="GridContainer" parent="V/ScrollContainer/Flow/Ranking/H/Result/V"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_constants/v_separation = 10
+
+[node name="0" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="1" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="2" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="3" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="4" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="5" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Content" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="Rank" type="VBoxContainer" parent="V/ScrollContainer/Flow/Ranking/H/Result/V"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="0" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Rank" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="1" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Rank" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="2" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Rank" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="3" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Rank" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="4" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Rank" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="5" parent="V/ScrollContainer/Flow/Ranking/H/Result/V/Rank" instance=ExtResource("6_gbtuc")]
+layout_mode = 2
+
+[node name="AddElement" type="Panel" parent="."]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -184.0
+theme = SubResource("Theme_4lpfw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_e15t5")
+script = ExtResource("7_jwtv6")
+
+[node name="H" type="HBoxContainer" parent="AddElement"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.05
+offset_left = 25.0
+offset_top = -159.0
+offset_right = -25.0
+offset_bottom = -8.2
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 11
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="AddElement/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="H" type="HBoxContainer" parent="AddElement/H/V"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="Panel" parent="AddElement/H/V/H"]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j51wl")
+
+[node name="H" type="HBoxContainer" parent="AddElement/H/V/H/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+alignment = 1
+
+[node name="V" type="VBoxContainer" parent="AddElement/H/V/H/ColorRect/H"]
+layout_mode = 2
+
+[node name="JumlahKriteria" type="HBoxContainer" parent="AddElement/H/V/H/ColorRect/H/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="AddElement/H/V/H/ColorRect/H/V/JumlahKriteria"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Jumlah Kriteria"
+vertical_alignment = 1
+
+[node name="Value" type="SpinBox" parent="AddElement/H/V/H/ColorRect/H/V/JumlahKriteria"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 1.0
+value = 2.0
+alignment = 1
+
+[node name="JumlahAlternatif" type="HBoxContainer" parent="AddElement/H/V/H/ColorRect/H/V"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="AddElement/H/V/H/ColorRect/H/V/JumlahAlternatif"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Jumlah Alternatif"
+vertical_alignment = 1
+
+[node name="Value" type="SpinBox" parent="AddElement/H/V/H/ColorRect/H/V/JumlahAlternatif"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+min_value = 1.0
+value = 2.0
+alignment = 1
+
+[node name=">" type="TextureRect" parent="AddElement/H/V/H/ColorRect/H"]
+visible = false
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture = ExtResource("12_miu7s")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Resize" type="Button" parent="AddElement/H/V/H/ColorRect/H"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resize"
+
+[node name="Clear" type="Button" parent="AddElement/H/V/H/ColorRect/H"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Clear"
+
+[node name="H2" type="HBoxContainer" parent="AddElement/H/V/H"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Contoh" type="Button" parent="AddElement/H/V/H/H2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Contoh"
+icon_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="AddElement/H/V"]
+layout_mode = 2
+
+[node name="H2" type="HBoxContainer" parent="AddElement/H/V"]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="Label" type="Label" parent="AddElement/H/V/H2"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Bobot Kriteria"
+
+[node name="BobotKriteria" type="CheckButton" parent="AddElement/H/V/H2"]
+visible = false
+layout_mode = 2
+button_pressed = true
+text = "Bobot Kriteria   "
+alignment = 1
+icon_alignment = 1
+text_direction = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AddElement/H/V/H2"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+follow_focus = true
+
+[node name="H" type="HBoxContainer" parent="AddElement/H/V/H2/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Bobot" parent="AddElement/H/V/H2/ScrollContainer/H" instance=ExtResource("8_a0ei7")]
+layout_mode = 2
+
+[node name="Label" parent="AddElement/H/V/H2/ScrollContainer/H/Bobot" index="0"]
+text = "C1"
+
+[node name="Nilai" parent="AddElement/H/V/H2/ScrollContainer/H/Bobot" index="1"]
+value = 50.0
+
+[node name="Bobot2" parent="AddElement/H/V/H2/ScrollContainer/H" instance=ExtResource("8_a0ei7")]
+layout_mode = 2
+
+[node name="Label" parent="AddElement/H/V/H2/ScrollContainer/H/Bobot2" index="0"]
+text = "C2"
+
+[node name="Nilai" parent="AddElement/H/V/H2/ScrollContainer/H/Bobot2" index="1"]
+value = 50.0
+
+[node name="HSeparator" type="VSeparator" parent="AddElement/H"]
+layout_mode = 2
+
+[node name="V2" type="VBoxContainer" parent="AddElement/H"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="Hitung" type="Button" parent="AddElement/H/V2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Hitung"
+
+[node name="WarningPopup" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 374.0
+offset_top = 217.0
+offset_right = -373.0
+offset_bottom = -217.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_moi1e")
+
+[node name="Label" type="Label" parent="WarningPopup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.333333, 0.333333, 1)
+theme_override_colors/font_shadow_color = Color(0.266667, 0.278431, 0.352941, 1)
+theme_override_fonts/font = SubResource("FontVariation_mqx5l")
+theme_override_font_sizes/font_size = 26
+text = "Tidak boleh ada field kosong atau bernilai nol!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AboutMe" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_top = 19.0
+offset_right = -51.0
+offset_bottom = 91.0
+grow_horizontal = 0
+icon = ExtResource("13_gkeuk")
+flat = true
+icon_alignment = 1
+
+[node name="About" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_moi1e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="About"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="Label" type="Label" parent="About/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.976471, 1)
+theme_override_colors/font_shadow_color = Color(0.266667, 0.278431, 0.352941, 1)
+theme_override_fonts/font = SubResource("FontVariation_mqx5l")
+theme_override_font_sizes/font_size = 26
+text = "Made with godot
+by Alvin Septiano
+
+2023"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="About/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="About/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Github"
+uri = "https://github.com/alvinseptiano"
+
+[node name="Close" type="Button" parent="About/VBoxContainer"]
+layout_mode = 2
+text = "Close"
+flat = true
+
+[editable path="AddElement/H/V/H2/ScrollContainer/H/Bobot"]
+[editable path="AddElement/H/V/H2/ScrollContainer/H/Bobot2"]

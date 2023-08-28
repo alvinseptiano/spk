@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://clxbtv4c1c11r"]
+
+[node name="Bobot" type="HBoxContainer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 187.0
+offset_bottom = 15.5
+grow_vertical = 2
+theme_override_constants/separation = 13
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+text = "Bobot (%)"
+
+[node name="Nilai" type="SpinBox" parent="."]
+layout_mode = 2
+suffix = "%"
+
+[node name="Tipe" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Cost"
+popup/item_0/id = 0
+popup/item_1/text = "Benefit"
+popup/item_1/id = 1
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 2
